@@ -1,3 +1,4 @@
+
 @media (max-width :1025px){
 
     body{
@@ -10,9 +11,7 @@
         border: none;
         font-size: 30px;
     }
-    .header-name-adp{
-        margin-left: 38px;
-    }
+    
     
     .product-container5{
         margin: 0;
@@ -135,7 +134,7 @@
     }
 
     .slider-button2{
-       margin-top: 1038px;
+       margin-top: 968px;
        left: 50%;
        transform: translate(-50%,0 );
 
@@ -376,19 +375,14 @@
     .product-container2{
         width: 640px;
     }
-    .slider-button2{
-        margin-top: 1000px;
-    }
+    
     
 }
 @media (max-width :710px){
     .product-container2{
         width: 300px;
     }
-    .fifth-button-container{
-        
     
-    }
     .six-info{
         width: 100%;
     }
