@@ -262,19 +262,25 @@ spanBtn7.onclick = function(){
 /*NAV-ADP*/
 let modal9=document.getElementById('myModal4');
 let btns9=document.getElementById('myBtn10');
+let img = document.createElement("IMG");
+img.src = "../img/burger.jpg";
+
 document.querySelector('.nav-btn').addEventListener('click',function(e){
   e.preventDefault();
   
   if(this.classList.contains('is-active')){
     this.classList.remove('is-active');
     modal9.style.display="none";
-    btns9.textContent = "=";
+    btns9.textContent = "☰";
+    
   }else{
     this.classList.add('is-active');
     modal9.style.display="block";
     btns9.textContent = "x";
   }
 })
+console.log(img);
+
 
 
 
@@ -375,31 +381,58 @@ const sliderImages = new Swiper('.slider__images .swiper-container', {
 
 /*counter*/ 
 
+// Добавляем прослушку на всем окне
+window.addEventListener('click', function (event) {
 
-const counter = function () {
-  const btns = document.querySelectorAll('.counter__btn');
+  // Объявляем переменную для счетчика
+  let counter;
 
+  // Проверяем клик строго по кнопкам Плюс либо Минус
+  if (event.target.dataset.action === 'plus' || event.target.dataset.action === 'minus') {
+  // Находим обертку счетчика
+  const counterWrapper = event.target.closest('.counter-wrapper');
+  // Находим див с числом счетчика
+      counter = counterWrapper.querySelector('[data-counter]');
+}
 
-  btns.forEach(btn => {
-    btn.addEventListener('click', function () {
-      const direction = this.dataset.direction;
-      const inp = this.parentElement.querySelector('.counter__value');
-      const currentValue = +inp.value ;
-      let newValue;
+// Проверяем является ли элемент по которому был совершен клик кнопкой Плюс
+if (event.target.dataset.action === 'plus') {
+  counter.innerText = ++counter.innerText;
+}
 
-      if (direction === 'plus') {
-        newValue = currentValue + 1;
-      } else {
-        newValue = currentValue - 1 > 0 ? currentValue - 1 : 1;
-      }
+// Проверяем является ли элемент по которому был совершен клик кнопкой Минус
+if (event.target.dataset.action === 'minus') {
 
-      inp.value = newValue;
-    })
-  })
+  // Проверяем чтобы счетчик был больше 1
+  if (parseInt(counter.innerText) > 1) {
+    // Изменяем текст в счетчике уменьшая его на 1
+    counter.innerText = --counter.innerText;
+  } else if (event.target.closest('.cart-wrapper') && parseInt(counter.innerText) === 1) {
+    // Проверка на товар который находится в корзине
+    console.log('IN CART!!!!');
+    // Удаляем товар из корзины
+    event.target.closest('.cart-item').remove();
+
+    // Отображение статуса корзины Пустая / Полная
+    toggleCartStatus();
+
+    // Пересчет общей стоимости товаров в корзине
+    calcCartPriceAndDelivery();
+  }
 
 }
 
-counter();
+// Проверяем клик на + или - внутри коризины
+if (event.target.hasAttribute('data-action')) {
+  // Пересчет общей стоимости товаров в корзине
+  calcPrice();
+}
+});
+
+
+
+
+
 
 
 
@@ -497,6 +530,35 @@ button2.addEventListener("click",function(){
 
 
 /*SHOP-LIST */
+
+ function calcPrice(){
+  const cartItem = document.querySelectorAll('.shop-content');
+  const totalPrice = document.querySelector('.price-subtotal');
+
+let subTotal =0;
+
+
+  cartItem.forEach( function (item){
+
+
+    const amongL = item.querySelector('[data-counter]');
+   
+    const currentPrice = parseInt(amongL.innerText) * 487;
+    subTotal += currentPrice;
+    
+  })
+
+  totalPrice.innerText=subTotal;
+
+  
+ }
+
+
+
+
+
+
+
 
 
 
