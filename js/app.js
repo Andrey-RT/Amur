@@ -268,7 +268,7 @@ document.querySelector('.nav-btn').addEventListener('click',function(e){
   if(this.classList.contains('is-active')){
     this.classList.remove('is-active');
     modal9.style.display="none";
-    btns9.textContent = "≡";
+    btns9.textContent = "=";
   }else{
     this.classList.add('is-active');
     modal9.style.display="block";
