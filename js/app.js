@@ -262,8 +262,7 @@ spanBtn7.onclick = function(){
 /*NAV-ADP*/
 let modal9=document.getElementById('myModal4');
 let btns9=document.getElementById('myBtn10');
-let img = document.createElement("IMG");
-img.src = "../img/burger.jpg";
+
 
 document.querySelector('.nav-btn').addEventListener('click',function(e){
   e.preventDefault();
@@ -279,7 +278,7 @@ document.querySelector('.nav-btn').addEventListener('click',function(e){
     btns9.textContent = "x";
   }
 })
-console.log(img);
+
 
 
 
